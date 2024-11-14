@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    @if (Request::path() !== '/' || Request::path() !== '/login')
+    @if (Route::current()->getName() !== 'login' and Route::current()->getName() !== 'home')
         <div class="container mt-3">
             <a href="{{ url('/') }}" class="btn btn-primary">Back to Home</a>
         </div>

@@ -8,7 +8,7 @@
             <a href="{{ route('users.showadd') }}" class="btn btn-success float-end">Add User</a>
         </div>
         <div class="card-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
                 <thead>
                     <tr>
                         <th>ID</th>

@@ -40,7 +40,7 @@
                 </div>
             @endif
 
-            <table class="table table-bordered">
+            <table class="table table-bordered table-responsive">
                 <thead>
                     <tr>
                         <th>ID</th>

@@ -35,7 +35,7 @@
                 <div class="col-md-12">
                     <h3 class="card-title">Kelola QR Code</h3>
                     <!-- Tabel untuk mengelola QR code -->
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-responsive">
                         <thead>
                             <tr>
                                 <th>Data</th>
@@ -49,7 +49,12 @@
                                 <td>{{ $qrcode->lokasi }}</td>
                                 <td><img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data={{ $qrcode->id }}" /></td>
                                 <td>
-                                    <a href="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data={{ $qrcode->id }}" download="qrcode_{{ $qrcode->id }}.png" class="btn btn-success btn-sm">Download</a>
+                                    <a href="https://api.qrserver.com/v1/create-qr-code/?size=512x512&data={{ $qrcode->id }}" download="qrcode_{{ $qrcode->id }}.png" class="btn btn-success btn-sm">Download</a>
+                                    <form action="{{ route('delete-qr', $qrcode->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

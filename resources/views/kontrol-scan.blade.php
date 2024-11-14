@@ -1,42 +1,48 @@
 @extends('layout')
 
 @section('css')
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.0.3/html5-qrcode.min.js"></script>
 @endsection
 
 @section('content')
-    <div class="container mt-5">
-        <div id="qr-reader" class="row justify-content-center">
-            <div class="col-12 col-md-6 mb-3" style="max-width: 100%;"></div>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-gradient-trolling text-white">
+            <h3 class="card-title">Kontrol Scan</h3>
         </div>
-        <div id="qr-reader-results" class="alert alert-info text-center"></div>
-        <div class="form-group">
-            <label for="nama_lengkap">Petugas</label>
-            <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
+        <div class="card-body">
+            <div id="qr-reader" class="row justify-content-center">
+                <div class="col-12 col-md-6 mb-3" style="max-width: 100%;"></div>
+            </div>
+            <div id="qr-reader-results" class="alert alert-info text-center"></div>
+            <div class="form-group">
+                <label for="nama_lengkap">Petugas</label>
+                <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
+            </div>
+            <form id="kontrol-form" style="display: none;">
+                @csrf
+                <input type="hidden" name="qrdata_id" id="qrdata_id">
+                <div id="location-heading" class="font-weight-bold mb-3"></div>
+                <div class="form-group">
+                    <label for="kondisi_sarpras">Kondisi Sarpras:</label>
+                    <input type="text" class="form-control" name="kondisi_sarpras" id="kondisi_sarpras" required>
+                </div>
+                <div class="form-group">
+                    <label for="jumlah_hunian">Jumlah Hunian:</label>
+                    <input type="number" class="form-control" name="jumlah_hunian" id="jumlah_hunian" required>
+                </div>
+                <div class="form-group">
+                    <label for="keterangan">Keterangan:</label>
+                    <input type="text" class="form-control" name="keterangan" id="keterangan">
+                </div>
+                <div id="form-buttons">
+                    <button type="button" class="btn btn-primary" onclick="saveTemporaryData()">Lanjutkan</button>
+                    <button type="button" class="btn btn-success" onclick="submitForm()">Selesai</button>
+                </div>
+            </form>
         </div>
-        <form id="kontrol-form" style="display: none;">
-            @csrf
-            <input type="hidden" name="qrdata_id" id="qrdata_id">
-            <div id="location-heading" class="font-weight-bold mb-3"></div>
-            <div class="form-group">
-                <label for="kondisi_sarpras">Kondisi Sarpras:</label>
-                <input type="text" class="form-control" name="kondisi_sarpras" id="kondisi_sarpras" required>
-            </div>
-            <div class="form-group">
-                <label for="jumlah_hunian">Jumlah Hunian:</label>
-                <input type="number" class="form-control" name="jumlah_hunian" id="jumlah_hunian" required>
-            </div>
-            <div class="form-group">
-                <label for="keterangan">Keterangan:</label>
-                <input type="text" class="form-control" name="keterangan" id="keterangan">
-            </div>
-            <div id="form-buttons">
-                <button type="button" class="btn btn-primary" onclick="saveTemporaryData()">Lanjutkan</button>
-                <button type="button" class="btn btn-success" onclick="submitForm()">Selesai</button>
-            </div>
-        </form>
     </div>
+</div>
 @endsection
 
 @section('scripts')

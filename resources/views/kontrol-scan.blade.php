@@ -12,7 +12,7 @@
         </div>
         <div id="qr-reader-results" class="alert alert-info text-center"></div>
         <div class="form-group">
-            <label for="nama_lengkap">Nama</label>
+            <label for="nama_lengkap">Petugas</label>
             <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
         </div>
         <form id="kontrol-form" style="display: none;">

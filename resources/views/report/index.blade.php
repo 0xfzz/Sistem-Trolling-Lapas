@@ -45,6 +45,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Petugas</th>
+                        <th>Bagian</th>
+                        <th>Lokasi</th>
                         <th>Kondisi Sarpras</th>
                         <th>Jumlah Hunian</th>
                         <th>Keterangan</th>
@@ -57,10 +59,12 @@
                         <tr>
                             <td>{{ $report->id }}</td>
                             <td>{{ $report->nama_lengkap }}</td>
+                            <td>{{ $report->tim }}</td>
+                            <td>{{ $report->lokasi }}</td>
                             <td>{{ $report->kondisi_sarpras }}</td>
                             <td>{{ $report->jumlah_hunian }}</td>
                             <td>{{ $report->keterangan }}</td>
-                            <td>{{ $report->created_at }}</td>
+                            <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('l, d F Y H:i') }}</td>
                             <td>
                                 <form action="{{ route('delete-report', $report->id) }}" method="POST" class="d-inline">
                                     @csrf

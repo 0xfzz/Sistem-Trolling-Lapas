@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
+use App\Models\QrData;
 
 class KontrolController extends Controller
 {
@@ -24,14 +25,14 @@ class KontrolController extends Controller
         ]);
 
         foreach ($request->input('reports') as $reportData) {
+            $lokasi = QrData::where('id', $reportData['qrdata_id'])->first();
             Report::create([
                 'user_id' => Auth::id(),
                 'nama_lengkap' => $request->input('nama_lengkap'),
-                'qrdata_id' => $reportData['qrdata_id'],
+                'lokasi' => $lokasi->lokasi,
                 'kondisi_sarpras' => $reportData['kondisi_sarpras'],
                 'jumlah_hunian' => $reportData['jumlah_hunian'],
-                'keterangan' => $reportData['keterangan'],
-                'status' => 'SUBMITTED',
+                'keterangan' => $reportData['keterangan']
             ]);
         }
         return response()->json('Data created successfully.');

@@ -13,8 +13,9 @@
                     <tr>
                         <th>ID</th>
                         <th>Username</th>
+                        <th>Tim</th>
                         <th>Role</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,6 +23,7 @@
                     <tr>
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->username }}</td>
+                        <td>{{ $user->tim }}</td>
                         <td>{{ $user->role }}</td>
                         <td>
                             <a href="{{ route('users.showedit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a>

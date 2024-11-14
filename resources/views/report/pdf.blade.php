@@ -24,7 +24,7 @@
             width: 50%;
             float: left;
             text-align: center;
-            margin-top: 50px;
+            margin-top: 10px;
         }
         .text-center {
             text-align: center;
@@ -56,6 +56,7 @@
                 <th>JUMLAH HUNIAN</th>
                 <th>WAKTU</th>
                 <th>PETUGAS</th>
+                <th>BAGIAN</th>
                 <th>KONDISI SARPRAS</th>
                 <th>LAPORAN</th>
             </tr>
@@ -65,8 +66,9 @@
                 <tr>
                     <td>{{ $report->lokasi }}</td>
                     <td>{{ $report->jumlah_hunian }}</td>
-                    <td>{{ $report->created_at }}</td>
+                    <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('l, d F Y H:i') }}</td>
                     <td>{{ $report->nama_lengkap }}</td>
+                    <td>{{ $report->tim }}</td>
                     <td>{{ $report->kondisi_sarpras }}</td>
                     <td>{{ $report->keterangan }}</td>
                 </tr>
@@ -76,21 +78,23 @@
     <div style="border: 1px solid black; padding: 8px; width: 100%; margin-bottom: 20px;">
         <p>Disposisi:</p>
     </div>
-    <div class="signature">
-        <p>Mengetahui,</p>
-        <p>Kalapas</p>
-        <br><br><br>
-        <p>____________________</p>
-        <p>Porman Siregar</p>
-        <p>NIP. 197105071994031001</p>
-    </div>
-    <div class="signature">
-        <p>Telah Diperiksa,</p>
-        <p>Ka.KPLP</p>
-        <br><br><br>
-        <p>____________________</p>
-        <p>Bambang Setiawan</p>
-        <p>NIP. 197712282000031001</p>
+    <div style="page-break-inside: avoid;">
+        <div class="signature">
+            <p>Mengetahui,</p>
+            <p>Kalapas</p>
+            <br><br>
+            <p>____________________</p>
+            <p>Porman Siregar</p>
+            <p>NIP. 197105071994031001</p>
+        </div>
+        <div class="signature">
+            <p>Telah Diperiksa,</p>
+            <p>Ka.KPLP</p>
+            <br><br>
+            <p>____________________</p>
+            <p>Bambang Setiawan</p>
+            <p>NIP. 197712282000031001</p>
+        </div>
     </div>
 </body>
 </html>

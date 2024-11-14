@@ -9,7 +9,7 @@ class ReportController extends Controller
 {
     public function index() {
         return view('report.index', [
-            'reports' => \App\Models\Report::all()
+            'reports' => \App\Models\Report::select('report.*', 'users.tim')->join('users', 'users.id', '=', 'report.user_id')->get()
         ]);
     }
 
@@ -20,7 +20,6 @@ class ReportController extends Controller
             'kondisi_sarpras' => 'required|string',
             'jumlah_hunian' => 'required|integer',
             'keterangan' => 'required|string',
-            'status' => 'required|in:NOT_SUBMITTED,SUBMITTED'
         ]);
 
         // Create a new report
@@ -29,7 +28,6 @@ class ReportController extends Controller
         $report->kondisi_sarpras = $validatedData['kondisi_sarpras'];
         $report->jumlah_hunian = $validatedData['jumlah_hunian'];
         $report->keterangan = $validatedData['keterangan'];
-        $report->status = $validatedData['status'];
         $report->save();
 
         // Redirect to the index page or show a success message
@@ -43,7 +41,6 @@ class ReportController extends Controller
             'kondisi_sarpras' => 'required|string',
             'jumlah_hunian' => 'required|integer',
             'keterangan' => 'required|string',
-            'status' => 'required|in:NOT_SUBMITTED,SUBMITTED'
         ]);
 
         // Find the report by ID
@@ -54,7 +51,6 @@ class ReportController extends Controller
         $report->kondisi_sarpras = $validatedData['kondisi_sarpras'];
         $report->jumlah_hunian = $validatedData['jumlah_hunian'];
         $report->keterangan = $validatedData['keterangan'];
-        $report->status = $validatedData['status'];
         $report->save();
 
         // Redirect to the index page or show a success message
@@ -79,13 +75,14 @@ class ReportController extends Controller
         $endDate = $request->input('end_date');
 
         // Find the reports within the date range
-        $reports = \App\Models\Report::select('report.*', 'qrdata.lokasi')->join('qrdata', 'qrdata.id', '=', 'report.qrdata_id');
+        $reports = new \App\Models\Report();
 
-        if($startDate && $endDate) {
+        if(trim($startDate) != '' && trim($endDate) != '' && !empty($startDate) && !empty($endDate)) {
             $reports = $reports->whereDate('report.created_at', '>=', $startDate)
             ->whereDate('report.created_at', '<=', $endDate);
         }
-        $reports = $reports->get();
+
+        $reports = $reports->select('report.*', 'users.tim')->join('users', 'users.id', '=', 'report.user_id')->get();
 
         // Generate a unique file name
         $fileName = 'reports_' . time() . '.pdf';

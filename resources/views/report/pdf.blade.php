@@ -44,15 +44,17 @@
 </head>
 <body>
     <div class="text-center">
-        <img src="images/permasyarakatan.png" alt="Left Logo" class="logo-left" width="100">
+        <img src="images/permasyarakatan.png" alt="Left Logo" class="logo-left" width="50">
         <h1>Laporan Pengamanan Blok</h1>
-        <img src="images/logo.png" alt="Right Logo" class="logo-right" width="100">
+        <img src="images/logo.png" alt="Right Logo" class="logo-right" width="50">
         @if (!empty($startDate) && !empty($endDate) && trim($startDate) != '' && trim($endDate) != '')
             @php
                 $startDate = \Carbon\Carbon::parse($startDate)->translatedFormat('d/m/Y');
                 $endDate = \Carbon\Carbon::parse($endDate)->translatedFormat('d/m/Y');
             @endphp
             <p>{{ $startDate }} - {{ $endDate }}</p>
+        @else
+            <br>
         @endif
     </div>
     <table>

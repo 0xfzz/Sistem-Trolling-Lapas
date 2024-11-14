@@ -25,15 +25,15 @@
                 <div id="location-heading" class="font-weight-bold mb-3"></div>
                 <div class="form-group">
                     <label for="kondisi_sarpras">Kondisi Sarpras:</label>
-                    <input type="text" class="form-control" name="kondisi_sarpras" id="kondisi_sarpras" required>
+                    <textarea class="form-control" name="kondisi_sarpras" id="kondisi_sarpras" rows="3"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="jumlah_hunian">Jumlah Hunian:</label>
                     <input type="number" class="form-control" name="jumlah_hunian" id="jumlah_hunian" required>
                 </div>
                 <div class="form-group">
-                    <label for="keterangan">Keterangan:</label>
-                    <input type="text" class="form-control" name="keterangan" id="keterangan">
+                    <label for="keterangan">Laporan:</label>
+                    <textarea class="form-control" name="keterangan" id="keterangan" rows="3"></textarea>
                 </div>
                 <div id="form-buttons">
                     <button type="button" class="btn btn-primary" onclick="saveTemporaryData()">Lanjutkan</button>

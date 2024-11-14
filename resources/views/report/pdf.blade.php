@@ -55,7 +55,7 @@
                 <th>TITIK KONTROL</th>
                 <th>JUMLAH HUNIAN</th>
                 <th>WAKTU</th>
-                <th>NAMA</th>
+                <th>PETUGAS</th>
                 <th>KONDISI SARPRAS</th>
                 <th>LAPORAN</th>
             </tr>

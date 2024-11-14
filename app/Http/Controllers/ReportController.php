@@ -31,7 +31,7 @@ class ReportController extends Controller
         $report->save();
 
         // Redirect to the index page or show a success message
-        return redirect()->route('report.index')->with('success', 'Report created successfully');
+        return redirect()->route('report-list')->with('success', 'Report created successfully');
     }
 
     public function update(Request $request, $id) {
@@ -54,7 +54,7 @@ class ReportController extends Controller
         $report->save();
 
         // Redirect to the index page or show a success message
-        return redirect()->route('report.index')->with('success', 'Report updated successfully');
+        return redirect()->route('report-list')->with('success', 'Report updated successfully');
     }
 
     public function delete($id) {
@@ -65,7 +65,7 @@ class ReportController extends Controller
         $report->delete();
 
         // Redirect to the index page or show a success message
-        return redirect()->route('report.index')->with('success', 'Report deleted successfully');
+        return redirect()->route('report-list')->with('success', 'Report deleted successfully');
     }
 
     public function download(Request $request)

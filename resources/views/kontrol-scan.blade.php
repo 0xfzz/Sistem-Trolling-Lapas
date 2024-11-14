@@ -16,7 +16,7 @@
             </div>
             <div id="qr-reader-results" class="alert alert-info text-center"></div>
             <div class="form-group">
-                <label for="nama_lengkap">Petugas</label>
+                <label for="nama_lengkap">Nama Petugas</label>
                 <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
             </div>
             <form id="kontrol-form" style="display: none;">
@@ -24,15 +24,15 @@
                 <input type="hidden" name="qrdata_id" id="qrdata_id">
                 <div id="location-heading" class="font-weight-bold mb-3"></div>
                 <div class="form-group">
-                    <label for="kondisi_sarpras">Kondisi Sarpras:</label>
+                    <label for="kondisi_sarpras">Keadaan</label>
                     <textarea class="form-control" name="kondisi_sarpras" id="kondisi_sarpras" rows="3"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="jumlah_hunian">Jumlah Hunian:</label>
+                    <label for="jumlah_hunian">Jumlah WBP</label>
                     <input type="number" class="form-control" name="jumlah_hunian" id="jumlah_hunian" required>
                 </div>
                 <div class="form-group">
-                    <label for="keterangan">Laporan:</label>
+                    <label for="keterangan">Inforting</label>
                     <textarea class="form-control" name="keterangan" id="keterangan" rows="3"></textarea>
                 </div>
                 <div id="form-buttons">

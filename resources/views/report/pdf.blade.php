@@ -47,28 +47,34 @@
         <img src="images/permasyarakatan.png" alt="Left Logo" class="logo-left" width="100">
         <h1>Laporan Pengamanan Blok</h1>
         <img src="images/logo.png" alt="Right Logo" class="logo-right" width="100">
-        <p>{{ $startDate }} - {{ $endDate }}</p>
+        @if (!empty($startDate) && !empty($endDate) && trim($startDate) != '' && trim($endDate) != '')
+            @php
+                $startDate = \Carbon\Carbon::parse($startDate)->translatedFormat('d/m/Y');
+                $endDate = \Carbon\Carbon::parse($endDate)->translatedFormat('d/m/Y');
+            @endphp
+            <p>{{ $startDate }} - {{ $endDate }}</p>
+        @endif
     </div>
     <table>
         <thead>
-            <tr>
-                <th>TITIK KONTROL</th>
-                <th>JUMLAH HUNIAN</th>
+            <tr style="line-height: 10px;">
                 <th>WAKTU</th>
+                <th>LOKASI</th>
                 <th>PETUGAS</th>
                 <th>BAGIAN</th>
-                <th>KONDISI SARPRAS</th>
-                <th>LAPORAN</th>
+                <th>JUMLAH WBP</th>
+                <th>KEADAAN</th>
+                <th>INFORTING</th>
             </tr>
         </thead>
         <tbody>
             @foreach($reports as $report)
                 <tr>
+                    <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('d M Y H:i') }}</td>
                     <td>{{ $report->lokasi }}</td>
-                    <td>{{ $report->jumlah_hunian }}</td>
-                    <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('l, d F Y H:i') }}</td>
                     <td>{{ $report->nama_lengkap }}</td>
                     <td>{{ $report->tim }}</td>
+                    <td>{{ $report->jumlah_hunian }}</td>
                     <td>{{ $report->kondisi_sarpras }}</td>
                     <td>{{ $report->keterangan }}</td>
                 </tr>

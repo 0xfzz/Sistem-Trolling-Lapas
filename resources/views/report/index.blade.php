@@ -47,9 +47,9 @@
                         <th>Petugas</th>
                         <th>Bagian</th>
                         <th>Lokasi</th>
-                        <th>Kondisi Sarpras</th>
+                        <th>Keadaan</th>
                         <th>Jumlah Hunian</th>
-                        <th>Keterangan</th>
+                        <th>Inforting</th>
                         <th>Tanggal Dibuat</th>
                         <th>Aksi</th>
                     </tr>

@@ -31,7 +31,7 @@
                 @csrf
                 <input type="hidden" name="start_date" value="{{ request('start_date') }}">
                 <input type="hidden" name="end_date" value="{{ request('end_date') }}">
-                <button type="submit" class="btn btn-secondary">Download Filtered Report</button>
+                <button type="submit" class="btn btn-secondary">Cetak Laporan</button>
             </form>
 
             @if(session('success'))

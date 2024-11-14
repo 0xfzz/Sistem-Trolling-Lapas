@@ -5,9 +5,6 @@
     .container {
         margin-top: 20px;
     }
-    .form-group label {
-        color: white;
-    }
 </style>
 @endsection
 
@@ -25,7 +22,7 @@
                         @csrf
                         <div class="form-group mb-3">
                             <label for="data">Lokasi:</label>
-                            <input type="text" name="lokasi" class="form-control" placeholder="Masukkan data">
+                            <input type="text" name="lokasi" class="form-control" placeholder="Masukkan Lokasi">
                         </div>
                         <button type="submit" class="btn btn-primary">Tambahkan</button>
                     </form>
@@ -38,7 +35,7 @@
                     <table class="table table-bordered table-responsive">
                         <thead>
                             <tr>
-                                <th>Data</th>
+                                <th>Lokasi</th>
                                 <th>QR Code</th>
                                 <th>Action</th>
                             </tr>

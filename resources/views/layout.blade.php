@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    @if (Request::path() !== '/')
+    @if (Request::path() !== '/' || Request::path() !== '/login')
         <div class="container mt-3">
             <a href="{{ url('/') }}" class="btn btn-primary">Back to Home</a>
         </div>

@@ -28,7 +28,7 @@
                     </form>
                 </div>
             </div>
-            <div class="row mt-4">
+            <div class="row mt-4 table-responsive">
                 <div class="col-md-12">
                     <h3 class="card-title">Kelola QR Code</h3>
                     <!-- Tabel untuk mengelola QR code -->

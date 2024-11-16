@@ -7,11 +7,11 @@
             <h3 class="card-title">User List</h3>
             <a href="{{ route('users.showadd') }}" class="btn btn-success float-end">Add User</a>
         </div>
-        <div class="card-body">
-            <table class="table table-bordered table-responsive">
+        <div class="card-body table-responsive">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
                         <th>Username</th>
                         <th>Tim</th>
                         <th>Role</th>
@@ -19,9 +19,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($users as $user)
+                    @foreach($users as $index => $user)
                     <tr>
-                        <td>{{ $user->id }}</td>
+                        <td>{{ $index + 1 }}</td>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->tim }}</td>
                         <td>{{ $user->role }}</td>

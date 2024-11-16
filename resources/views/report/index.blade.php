@@ -39,43 +39,44 @@
                     {{ session('success') }}
                 </div>
             @endif
-
-            <table class="table table-bordered table-responsive">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Petugas</th>
-                        <th>Bagian</th>
-                        <th>Lokasi</th>
-                        <th>Keadaan</th>
-                        <th>Jumlah Hunian</th>
-                        <th>Inforting</th>
-                        <th>Tanggal Dibuat</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($reports as $report)
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td>{{ $report->id }}</td>
-                            <td>{{ $report->nama_lengkap }}</td>
-                            <td>{{ $report->tim }}</td>
-                            <td>{{ $report->lokasi }}</td>
-                            <td>{{ $report->kondisi_sarpras }}</td>
-                            <td>{{ $report->jumlah_hunian }}</td>
-                            <td>{{ $report->keterangan }}</td>
-                            <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('l, d F Y H:i') }}</td>
-                            <td>
-                                <form action="{{ route('delete-report', $report->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
-                            </td>
+                            <th>No</th>
+                            <th>Petugas</th>
+                            <th>Bagian</th>
+                            <th>Lokasi</th>
+                            <th>Keadaan</th>
+                            <th>Jumlah WBP</th>
+                            <th>Inforting</th>
+                            <th>Waktu</th>
+                            <th>Aksi</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach($reports as $index => $report)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $report->nama_lengkap }}</td>
+                                <td>{{ $report->tim }}</td>
+                                <td>{{ $report->lokasi }}</td>
+                                <td>{{ $report->kondisi_sarpras }}</td>
+                                <td>{{ $report->jumlah_hunian }}</td>
+                                <td>{{ $report->keterangan }}</td>
+                                <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('d M Y H:i') }}</td>
+                                <td>
+                                    <form action="{{ route('delete-report', $report->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

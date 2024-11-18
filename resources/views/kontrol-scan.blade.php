@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group mt-4">
                     <label for="keterangan">Inforting</label>
-                    <div id="keterangan"></div>
+                    <div id="keterangan" style="height: 250px"></div>
                 </div>
                 <div id="form-buttons" class="mt-4">
                     <button type="button" class="btn btn-primary" onclick="saveTemporaryData()">Lanjutkan</button>

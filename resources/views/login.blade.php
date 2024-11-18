@@ -1,9 +1,9 @@
 @extends('layout')
 @section('content')
-<div class="container login-container">
+<div class="container d-flex justify-content-center align-items-center login-container" style="height: 100vh;">
     <div class="login-card">
         <div class="text-center mb-3">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid" style="width: 15%">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid" style="width: 25%">
         </div>
         @if (session('error'))
             <div class="alert alert-danger" role="alert">

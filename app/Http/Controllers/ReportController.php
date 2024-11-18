@@ -7,9 +7,24 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReportController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Find the reports within the date range
+        $reports = new \App\Models\Report();
+
+        if(trim($startDate) != '' && trim($endDate) != '' && !empty($startDate) && !empty($endDate)) {
+
+            $reports = $reports->whereDate('report.created_at', '>=', $startDate)
+            ->whereDate('report.created_at', '<=', $endDate);
+        }
+
+        $reports = $reports->select('report.*', 'users.tim')->join('users', 'users.id', '=', 'report.user_id');
+
+        $reports = $reports->get();
         return view('report.index', [
-            'reports' => \App\Models\Report::select('report.*', 'users.tim')->join('users', 'users.id', '=', 'report.user_id')->get()
+            'reports' => $reports
         ]);
     }
 
@@ -78,14 +93,16 @@ class ReportController extends Controller
         $reports = new \App\Models\Report();
 
         if(trim($startDate) != '' && trim($endDate) != '' && !empty($startDate) && !empty($endDate)) {
+
             $reports = $reports->whereDate('report.created_at', '>=', $startDate)
             ->whereDate('report.created_at', '<=', $endDate);
         }
 
-        $reports = $reports->select('report.*', 'users.tim')->join('users', 'users.id', '=', 'report.user_id')->get();
+        $reports = $reports->select('report.*', 'users.tim')->join('users', 'users.id', '=', 'report.user_id');
 
+        $reports = $reports->get();
         // Generate a unique file name
-        $fileName = 'reports_' . time() . '.pdf';
+        $fileName = 'Laporan Kontrol Keliling_' . time() . '.pdf';
 
         // Set the PDF to landscape
         $pdf = Pdf::loadView('report.pdf', ['startDate' => $startDate, 'endDate' => $endDate, 'reports' => $reports])->setPaper('a4', 'landscape');

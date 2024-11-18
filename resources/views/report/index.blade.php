@@ -11,13 +11,13 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="start_date" class="text-white">Tanggal Mulai</label>
+                            <label for="start_date" >Tanggal Mulai</label>
                             <input type="date" name="start_date" id="start_date" class="form-control" value="{{ request('start_date') }}">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="end_date" class="text-white">Tanggal Akhir</label>
+                            <label for="end_date">Tanggal Akhir</label>
                             <input type="date" name="end_date" id="end_date" class="form-control" value="{{ request('end_date') }}">
                         </div>
                     </div>
@@ -63,8 +63,8 @@
                                 <td>{{ $report->lokasi }}</td>
                                 <td>{{ $report->kondisi_sarpras }}</td>
                                 <td>{{ $report->jumlah_hunian }}</td>
-                                <td>{{ $report->keterangan }}</td>
-                                <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('d M Y H:i') }}</td>
+                                <td>{!! $report->keterangan !!}</td>
+                                <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('d M Y H:i:s') }}</td>
                                 <td>
                                     <form action="{{ route('delete-report', $report->id) }}" method="POST" class="d-inline">
                                         @csrf

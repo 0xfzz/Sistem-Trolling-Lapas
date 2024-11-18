@@ -2,6 +2,7 @@
 
 @section('css')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.0.3/html5-qrcode.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -14,12 +15,11 @@
             <div id="qr-reader" class="row justify-content-center">
                 <div class="col-12 col-md-6 mb-3" style="max-width: 100%;"></div>
             </div>
-            <div id="qr-reader-results" class="alert alert-info text-center"></div>
-            <div class="form-group">
+            <div class="form-group mt-4">
                 <label for="nama_lengkap">Nama Petugas</label>
                 <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
             </div>
-            <form id="kontrol-form" style="display: none;">
+            <form id="kontrol-form" class="mt-4" style="display: none;">
                 @csrf
                 <input type="hidden" name="qrdata_id" id="qrdata_id">
                 <div id="location-heading" class="font-weight-bold mb-3"></div>
@@ -27,15 +27,15 @@
                     <label for="kondisi_sarpras">Keadaan</label>
                     <textarea class="form-control" name="kondisi_sarpras" id="kondisi_sarpras" rows="3"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-4">
                     <label for="jumlah_hunian">Jumlah WBP</label>
                     <input type="number" class="form-control" name="jumlah_hunian" id="jumlah_hunian" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-4">
                     <label for="keterangan">Inforting</label>
-                    <textarea class="form-control" name="keterangan" id="keterangan" rows="3"></textarea>
+                    <div id="keterangan"></div>
                 </div>
-                <div id="form-buttons">
+                <div id="form-buttons" class="mt-4">
                     <button type="button" class="btn btn-primary" onclick="saveTemporaryData()">Lanjutkan</button>
                     <button type="button" class="btn btn-success" onclick="submitForm()">Selesai</button>
                 </div>
@@ -46,14 +46,17 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+
     <script>
         const html5QrCode = new Html5Qrcode("qr-reader");
         let temporaryData = [];
-
+        const quill = new Quill('#keterangan', {
+            theme: 'snow'
+        });
         function onScanSuccess(decodedText, decodedResult) {
             html5QrCode.stop().then(() => {
                 document.getElementById('qrdata_id').value = decodedText;
-                document.getElementById('qr-reader-results').innerText = `QR Code scanned: ${decodedText}`;
                 fetchLocation(decodedText);
                 document.getElementById('qr-reader').style.display = 'none';
                 document.getElementById('kontrol-form').style.display = 'block';
@@ -76,10 +79,11 @@
                 qrdata_id: document.getElementById('qrdata_id').value,
                 kondisi_sarpras: document.getElementById('kondisi_sarpras').value,
                 jumlah_hunian: document.getElementById('jumlah_hunian').value,
-                keterangan: document.getElementById('keterangan').value
+                keterangan: quill.getSemanticHTML()
             };
             temporaryData.push(formData);
             document.getElementById('kontrol-form').reset();
+            quill.setContents([]);
             document.getElementById('kontrol-form').style.display = 'none';
             document.getElementById('qr-reader').style.display = 'block';
             console.log('Temporary data:', temporaryData);

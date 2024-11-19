@@ -1,6 +1,11 @@
 @extends('layout')
 
 @section('content')
+<style>
+    td {
+        white-space: nowrap;
+    }
+</style>
 <div class="container mt-5">
     <div class="card">
         <div class="card-header bg-gradient-trolling text-white">
@@ -44,13 +49,13 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Waktu</th>
+                            <th>Lokasi</th>
                             <th>Petugas</th>
                             <th>Bagian</th>
-                            <th>Lokasi</th>
-                            <th>Keadaan</th>
                             <th>Jumlah WBP</th>
+                            <th>Keadaan</th>
                             <th>Inforting</th>
-                            <th>Waktu</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -58,13 +63,13 @@
                         @foreach($reports as $index => $report)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
+                                <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('d M Y H:i:s') }}</td>
+                                <td>{{ $report->lokasi }}</td>
                                 <td>{{ $report->nama_lengkap }}</td>
                                 <td>{{ $report->tim }}</td>
-                                <td>{{ $report->lokasi }}</td>
-                                <td>{{ $report->kondisi_sarpras }}</td>
                                 <td>{{ $report->jumlah_hunian }}</td>
+                                <td>{{ $report->kondisi_sarpras }}</td>
                                 <td>{!! $report->keterangan !!}</td>
-                                <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('d M Y H:i:s') }}</td>
                                 <td>
                                     <form action="{{ route('delete-report', $report->id) }}" method="POST" class="d-inline">
                                         @csrf

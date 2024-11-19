@@ -102,12 +102,12 @@ class ReportController extends Controller
 
         $reports = $reports->get();
         // Generate a unique file name
-        $fileName = 'Laporan Kontrol Keliling_' . time() . '.pdf';
+        // $fileName = 'Laporan Kontrol Keliling_' . time() . '.pdf';
 
-        // Set the PDF to landscape
-        $pdf = Pdf::loadView('report.pdf', ['startDate' => $startDate, 'endDate' => $endDate, 'reports' => $reports])->setPaper('a4', 'landscape');
+        // // Set the PDF to landscape
+        // $pdf = Pdf::loadView('report.pdf', )->setPaper('a4', 'landscape');
 
         // Stream the PDF file to the browser without saving it to the public directory
-        return $pdf->download($fileName);
+        return view('report.pdf', ['startDate' => $startDate, 'endDate' => $endDate, 'reports' => $reports]);
     }
 }

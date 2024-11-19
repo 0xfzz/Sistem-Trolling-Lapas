@@ -22,6 +22,9 @@
                 <div class="input-group">
                     <span class="input-group-text bg-gradient-trolling border-0 text-white"><i class="bi bi-lock"></i></span>
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                    <span class="input-group-text bg-gradient-trolling border-0 text-white">
+                        <i class="bi bi-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
+                    </span>
                 </div>
             </div>
             <div class="d-grid">
@@ -30,4 +33,20 @@
         </form>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function (e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+
+            // toggle the eye slash icon
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    });
+</script>
 @endsection

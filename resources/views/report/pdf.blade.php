@@ -17,7 +17,7 @@
             border: 1px solid black;
         }
         td {
-            word-break:keep-all;
+            white-space: nowrap;
         }
         th, td {
             padding: 8px;
@@ -49,19 +49,31 @@
         .tr-font-size {
             font-size: 13px;
         }
+        .mt-0 {
+            margin-top: 0;
+        }
+        .mb-0 {
+            margin-bottom: 0;
+        }
+        .m-0 {
+            margin: 0;
+        }
+        * {
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
     <div class="text-center">
-        <img src="images/permasyarakatan.png" alt="Left Logo" class="logo-left" width="50">
-        <h1>Laporan Pengamanan Blok</h1>
-        <img src="images/logo.png" alt="Right Logo" class="logo-right" width="50">
+        <img src="{{ asset('images/permasyarakatan.png') }}" alt="Left Logo" class="logo-left" width="50">
+        <h1 class="mb-0">Laporan Pengamanan Blok</h1>
+        <img src="{{ asset('images/logo.png') }}" alt="Right Logo" class="logo-right" width="50">
         @if (!empty($startDate) && !empty($endDate) && trim($startDate) != '' && trim($endDate) != '')
             @php
                 $startDate = \Carbon\Carbon::parse($startDate)->translatedFormat('d/m/Y');
                 $endDate = \Carbon\Carbon::parse($endDate)->translatedFormat('d/m/Y');
             @endphp
-            <p>{{ $startDate }} - {{ $endDate }}</p>
+            <p class="mt-0">{{ $startDate }} - {{ $endDate }}</p>
         @else
             <br>
         @endif
@@ -97,20 +109,20 @@
     </div>
     <div class="tr-font-size" style="page-break-inside: avoid;">
         <div class="signature">
-            <p>Mengetahui,</p>
-            <p>Kalapas</p>
-            <br><br>
+            <p class="m-0">Mengetahui,</p>
+            <p class="m-0">Kalapas</p>
+            <br><br><br>
             <p>____________________</p>
-            <p>Porman Siregar</p>
-            <p>NIP. 197105071994031001</p>
+            <p class="m-0">Porman Siregar</p>
+            <p class="m-0">NIP. 197105071994031001</p>
         </div>
         <div class="signature">
-            <p>Telah Diperiksa,</p>
-            <p>Ka.KPLP</p>
-            <br><br>
+            <p class="m-0">Telah Diperiksa,</p>
+            <p class="m-0">Ka.KPLP</p>
+            <br><br><br>
             <p>____________________</p>
-            <p>Bambang Setiawan</p>
-            <p>NIP. 197712282000031001</p>
+            <p class="m-0">Bambang Setiawan</p>
+            <p class="m-0">NIP. 197712282000031001</p>
         </div>
     </div>
 </body>

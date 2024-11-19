@@ -58,16 +58,16 @@
         .m-0 {
             margin: 0;
         }
-        * {
+        /* * {
             box-sizing: border-box;
-        }
+        } */
     </style>
 </head>
 <body>
     <div class="text-center">
-        <img src="{{ asset('images/permasyarakatan.png') }}" alt="Left Logo" class="logo-left" width="50">
+        <img src="images/permasyarakatan.png" alt="Left Logo" class="logo-left" width="50">
         <h1 class="mb-0">Laporan Pengamanan Blok</h1>
-        <img src="{{ asset('images/logo.png') }}" alt="Right Logo" class="logo-right" width="50">
+        <img src="images/logo.png" alt="Right Logo" class="logo-right" width="50">
         @if (!empty($startDate) && !empty($endDate) && trim($startDate) != '' && trim($endDate) != '')
             @php
                 $startDate = \Carbon\Carbon::parse($startDate)->translatedFormat('d/m/Y');
@@ -104,7 +104,7 @@
             @endforeach
         </tbody>
     </table>
-    <div class="tr-font-size" style="border: 1px solid black; padding: 8px; width: 100%; margin-bottom: 20px;">
+    <div class="tr-font-size" style="border: 1px solid black; padding: 8px 0 8px 8px; margin-bottom: 20px;">
         <p>Disposisi:</p>
     </div>
     <div class="tr-font-size" style="page-break-inside: avoid;">

@@ -2,9 +2,29 @@
 
 @section('content')
 <style>
-    td {
-        white-space: nowrap;
-    }
+        table {
+            table-layout: fixed;
+        }
+        .nowrap {
+            white-space: nowrap;
+        }
+        .half-width{
+            width: 400px;
+        }
+        .petugas {
+            width: 15%;
+        }
+        th{
+            text-align: center;
+            vertical-align:middle
+        }
+        th, td {
+            font-size: 11px;
+            padding: 2px !important;
+        }
+        .small-width {
+            width: 60px;
+        }
 </style>
 <div class="container mt-5">
     <div class="card">
@@ -48,24 +68,24 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>No</th>
-                            <th>Waktu</th>
-                            <th>Lokasi</th>
-                            <th>Petugas</th>
-                            <th>Bagian</th>
-                            <th>Jumlah WBP</th>
-                            <th>Keadaan</th>
-                            <th>Inforting</th>
-                            <th>Aksi</th>
+                            <th class="small-width">No</th>
+                            <th style="width: 120px">Waktu</th>
+                            <th style="width: 100px">Lokasi</th>
+                            <th style="width: 200px">Petugas</th>
+                            <th style="width: 100px">Bagian</th>
+                            <th class="small-width">Jumlah WBP</th>
+                            <th class="half-width">Keadaan</th>
+                            <th class="half-width">Inforting</th>
+                            <th style="width: 200px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($reports as $index => $report)
                             <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('d M Y H:i:s') }}</td>
+                                <td style="text-align: center">{{ $index + 1 }}</td>
+                                <td class="nowrap">{{ \Carbon\Carbon::parse($report->created_at)->translatedFormat('d M Y H:i:s') }}</td>
                                 <td>{{ $report->lokasi }}</td>
-                                <td>{{ $report->nama_lengkap }}</td>
+                                <td class="nowrap">{{ $report->nama_lengkap }}</td>
                                 <td>{{ $report->tim }}</td>
                                 <td>{{ $report->jumlah_hunian }}</td>
                                 <td>{{ $report->kondisi_sarpras }}</td>

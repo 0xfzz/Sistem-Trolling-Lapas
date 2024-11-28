@@ -36,8 +36,8 @@
                     <div id="keterangan" style="height: 250px"></div>
                 </div>
                 <div id="form-buttons" class="mt-4">
-                    <button type="button" class="btn btn-primary" onclick="saveTemporaryData()">Lanjutkan</button>
-                    <button type="button" class="btn btn-success" onclick="submitForm()">Selesai</button>
+                    <button type="button" class="btn btn-primary" onclick="selanjutnya()">Lanjutkan</button>
+                    <button type="button" class="btn btn-success" onclick="selesai()">Selesai</button>
                 </div>
             </form>
         </div>
@@ -73,15 +73,8 @@
                 })
                 .catch(error => console.error('Error fetching location:', error));
         }
-
-        function saveTemporaryData() {
-            const formData = {
-                qrdata_id: document.getElementById('qrdata_id').value,
-                kondisi_sarpras: document.getElementById('kondisi_sarpras').value,
-                jumlah_hunian: document.getElementById('jumlah_hunian').value,
-                keterangan: quill.getSemanticHTML()
-            };
-            temporaryData.push(formData);
+        function clearTemporaryData() {
+            temporaryData = [];
             document.getElementById('kontrol-form').reset();
             quill.setContents([]);
             document.getElementById('kontrol-form').style.display = 'none';
@@ -96,8 +89,26 @@
                 onScanSuccess
             );
         }
+        function saveTemporaryData() {
+            const formData = {
+                qrdata_id: document.getElementById('qrdata_id').value,
+                kondisi_sarpras: document.getElementById('kondisi_sarpras').value,
+                jumlah_hunian: document.getElementById('jumlah_hunian').value,
+                keterangan: quill.getSemanticHTML()
+            };
+            temporaryData.push(formData);
+        }
+        function selanjutnya(){
+            saveTemporaryData();
+            submitForm();
+            clearTemporaryData();
 
-        function submitForm() {
+        }
+        function selesai(){
+            saveTemporaryData();
+            submitForm(true);
+        }
+        function submitForm(selesai = false) {
             saveTemporaryData();
             fetch("{{ route('kontrol-store') }}", {
                 method: "POST",
@@ -115,11 +126,13 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                alert('Berhasil Terkirim');
-                window.location = "{{ route('home') }}";
+                alert('Berhasil Terkirim ke Server');
+                if (selesai) {
+                    window.location = "{{ route('home') }}";
+                }
             })
             .catch((error) => {
-                console.error('Error:', error);
+                alert('Gagal Terkirim ke Server');
             });
         }
 

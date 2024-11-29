@@ -105,6 +105,7 @@
 
         }
         function selesai(){
+            temporaryData = [];
             saveTemporaryData();
             submitForm(true);
         }

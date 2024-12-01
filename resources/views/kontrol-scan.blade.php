@@ -110,7 +110,6 @@
             submitForm(true);
         }
         function submitForm(selesai = false) {
-            saveTemporaryData();
             fetch("{{ route('kontrol-store') }}", {
                 method: "POST",
                 headers: {
